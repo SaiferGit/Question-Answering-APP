@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "239608947245",
+    "firebase_url": "https://question-anwer-app.firebaseio.com",
+    "project_id": "question-anwer-app",
+    "storage_bucket": "question-anwer-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:239608947245:android:ec25ce689875662a1f0ea4",
+        "android_client_info": {
+          "package_name": "com.example.questionanwerapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "239608947245-ichkr5ona05d3k961375scsnb35c9ec3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.questionanwerapp",
+            "certificate_hash": "b7858a80430922f46a866e732eb290bde3012397"
+          }
+        },
+        {
+          "client_id": "239608947245-2hfigljv8lvqa037bp8cvr3401q9nv8q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDk1_A0cwHv5HK7dhNr8Ugt3amafWIcfkU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "239608947245-2hfigljv8lvqa037bp8cvr3401q9nv8q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
