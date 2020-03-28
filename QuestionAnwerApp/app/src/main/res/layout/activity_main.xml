@@ -12,16 +12,20 @@
         android:layout_width="match_parent"
         android:layout_height="450dp">
 
+
         <com.scwang.wave.MultiWaveHeader
             android:id="@+id/waveHeader"
             android:layout_width="match_parent"
             android:layout_height="450dp"
-            app:mwhStartColor="@color/darkBlue"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
             app:mwhCloseColor="@color/darkBlue"
+            app:mwhStartColor="@color/darkBlue"
             app:mwhWaves="MultiWave">
 
         </com.scwang.wave.MultiWaveHeader>
-
 
         <TextView
             android:layout_width="wrap_content"

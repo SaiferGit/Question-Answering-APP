@@ -84,6 +84,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:visibility="visible"
         android:id="@+id/upper_linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -92,17 +93,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/upper_linearLayout">
 
-        <EditText
-            android:visibility="gone"
-            android:id="@+id/answer_editText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/comfortaa"
-            android:text="write your answer here.."
-            android:padding="16dp"
-            android:inputType="textShortMessage"
-            android:background="@drawable/rounded_borders"
-            android:backgroundTint="#989898"/>
 
         <Button
             android:visibility="visible"
@@ -113,6 +103,8 @@
             android:layout_margin="8dp"
             android:background="@drawable/rounded_borders"
             android:backgroundTint="#989898"
+            android:textColor="#000000"
+            android:textStyle="bold"
             android:textAllCaps="false"
             android:text="OPTION 1"
             android:fontFamily="@font/comfortaa"
@@ -129,6 +121,7 @@
             android:backgroundTint="#989898"
             android:textAllCaps="false"
             android:text="OPTION 2"
+            android:textSize="15dp"
             android:fontFamily="@font/comfortaa"
             />
 
@@ -162,34 +155,67 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/lower_linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upper_linearLayout">
+
+
+        <EditText
+            android:visibility="visible"
+            android:id="@+id/answer_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/comfortaa"
+            android:hint="write your answer here...."
+            android:padding="26dp"
+            android:textStyle="bold"
+            android:layout_margin="20dp"
+            android:layout_marginTop="20dp"
+            android:inputType="textShortMessage"
+            android:background="@drawable/rounded_borders"
+            android:backgroundTint="#989898"/>
+
+
+    </LinearLayout>
+
+
     <Button
         android:id="@+id/button5"
         android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_height="154dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:text="Share"
-        android:textSize="20dp"
-        android:textStyle="bold"
         android:background="@drawable/ic_blob_shundor"
+        android:text="Previous"
         android:textColor="#FFFFFF"
+        android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button6"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/upper_linearLayout2"/>
-
+        app:layout_constraintTop_toBottomOf="@id/upper_linearLayout2"
+        app:layout_constraintVertical_bias="0.991" />
 
     <Button
         android:id="@+id/button6"
-        android:layout_width="203dp"
-        android:layout_height="197dp"
+        android:layout_width="250dp"
+        android:layout_height="194dp"
         android:layout_marginStart="16dp"
-        android:background="@drawable/ic_blob_green"
+        android:alpha="1"
+        android:background="@drawable/ic_blob_next"
+        android:enabled="false"
         android:gravity="center"
         android:text="Next"
         android:textColor="#FFFFFF"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
