@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:shape="rectangle">
-    <corners android:radius="300dp"/>
-    <solid android:color="@color/green"/>
+    <com.scwang.wave.MultiWaveHeader
+        android:id="@+id/waveHeader"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        app:mwhStartColor="@color/darkBlue"
+        app:mwhCloseColor="@color/darkBlue"
+        app:mwhWaves="MultiWave"
+        tools:targetApi="n">
+
+    </com.scwang.wave.MultiWaveHeader>
 
 </shape>

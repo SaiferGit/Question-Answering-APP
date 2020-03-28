@@ -72,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+        else{
+            Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
+            startActivity(intent);
+        }
     }
 
     private void implementingWaveHeader() {

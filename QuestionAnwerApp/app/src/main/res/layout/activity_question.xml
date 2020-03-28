@@ -1,30 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".QuestionActivity"
-    android:background="#FFFFFF">
+    android:background="#FFFFFF"
+    android:id="@+id/question_ConstrainLayout">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/question_toolbar"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        >
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Questions"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"
             android:gravity="center"
             android:textSize="26dp"
-            />
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"/>
 
     </androidx.appcompat.widget.Toolbar>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/question_toolbar">
 
-</RelativeLayout>
+        <com.scwang.wave.MultiWaveHeader
+            android:id="@+id/waveHeader"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            app:mwhStartColor="@color/darkBlue"
+            app:mwhCloseColor="@color/darkBlue"
+            app:mwhWaves="MultiWave">
+
+        </com.scwang.wave.MultiWaveHeader>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/upper_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/question_toolbar">
+
+        <TextView
+            android:id="@+id/question_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/rounded_category_bg"
+            android:fontFamily="@font/comfortaa"
+            android:padding="20dp"
+            android:textSize="16dp"
+            android:text="TextView"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            />
+
+        <TextView
+            android:id="@+id/question_countView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="1/10"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/upper_linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upper_linearLayout">
+
+        <EditText
+            android:visibility="gone"
+            android:id="@+id/answer_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/comfortaa"
+            android:text="write your answer here.."
+            android:padding="16dp"
+            android:inputType="textShortMessage"
+            android:background="@drawable/rounded_borders"
+            android:backgroundTint="#989898"/>
+
+        <Button
+            android:visibility="visible"
+            android:id="@+id/answer_button1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/rounded_borders"
+            android:backgroundTint="#989898"
+            android:textAllCaps="false"
+            android:text="OPTION 1"
+            android:fontFamily="@font/comfortaa"
+            />
+
+        <Button
+            android:visibility="visible"
+            android:id="@+id/answer_button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/rounded_borders"
+            android:backgroundTint="#989898"
+            android:textAllCaps="false"
+            android:text="OPTION 2"
+            android:fontFamily="@font/comfortaa"
+            />
+
+        <Button
+            android:visibility="visible"
+            android:id="@+id/answer_button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/rounded_borders"
+            android:backgroundTint="#989898"
+            android:textAllCaps="false"
+            android:text="OPTION 3"
+            android:fontFamily="@font/comfortaa"
+            />
+
+        <Button
+            android:visibility="visible"
+            android:id="@+id/answer_button4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/rounded_borders"
+            android:backgroundTint="#989898"
+            android:textAllCaps="false"
+            android:text="OPTION 4"
+            android:fontFamily="@font/comfortaa"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Share"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:background="@drawable/ic_blob_shundor"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/upper_linearLayout2"/>
+
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="203dp"
+        android:layout_height="197dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/ic_blob_green"
+        android:gravity="center"
+        android:text="Next"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button5"
+        app:layout_constraintTop_toBottomOf="@id/upper_linearLayout2"
+        app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
