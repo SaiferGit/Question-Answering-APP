@@ -1,19 +1,80 @@
 package com.example.questionanwerapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.scwang.wave.MultiWaveHeader;
 
 public class MainActivity extends AppCompatActivity {
 
+    FirebaseAuth mAuth;
+    FirebaseUser mCurrentUser;
     MultiWaveHeader waveHeader;
+    Button btn_start, btn_stat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mAuth = FirebaseAuth.getInstance();
+        mCurrentUser = mAuth.getCurrentUser();
+
+        btn_start = findViewById(R.id.btn_main_start);
+        btn_stat = findViewById(R.id.btn_main_stat);
+
+        implementingWaveHeader();
+
+        btn_start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signAnonymouslyWithFirebase();
+            }
+        });
+
+        btn_stat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
+                //startActivity(intent);
+                // how many data we've collected so far
+            }
+        });
+    }
+
+
+
+    private void signAnonymouslyWithFirebase() {
+        if(mCurrentUser == null){
+            mAuth.signInAnonymously().addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(task.isSuccessful()){
+                        Toast.makeText(MainActivity.this, "Signed in Anonymously!", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
+                        startActivity(intent);
+
+                    } else {
+                        Toast.makeText(MainActivity.this, "Error occurred!" +task.toString(), Toast.LENGTH_LONG).show();
+                    }
+
+                }
+            });
+        }
+    }
+
+    private void implementingWaveHeader() {
         waveHeader = findViewById(R.id.waveHeader);
 
         waveHeader.setColorAlpha(.5f);
