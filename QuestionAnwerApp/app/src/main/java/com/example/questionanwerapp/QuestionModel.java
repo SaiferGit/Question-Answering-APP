@@ -1,7 +1,7 @@
 package com.example.questionanwerapp;
 
 public class QuestionModel {
-    private String question, answerA, answerB, answerC, answerD, answerText;
+    private String question, answerA, answerB, answerC, answerD, answerText, genText, holiText, strText;
 
     public QuestionModel(){}
 
@@ -16,6 +16,37 @@ public class QuestionModel {
     public QuestionModel(String question, String answerText) {
         this.question = question;
         this.answerText = answerText;
+    }
+
+    public QuestionModel(String question, String genText, String holiText, String strText) {
+        this.question = question;
+        this.genText = genText;
+        this.holiText = holiText;
+        this.strText = strText;
+    }
+
+    public String getGenText() {
+        return genText;
+    }
+
+    public void setGenText(String genText) {
+        this.genText = genText;
+    }
+
+    public String getHoliText() {
+        return holiText;
+    }
+
+    public void setHoliText(String holiText) {
+        this.holiText = holiText;
+    }
+
+    public String getStrText() {
+        return strText;
+    }
+
+    public void setStrText(String strText) {
+        this.strText = strText;
     }
 
     public String getQuestion() {

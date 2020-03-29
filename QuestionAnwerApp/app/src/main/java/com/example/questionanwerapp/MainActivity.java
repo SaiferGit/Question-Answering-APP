@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -61,7 +64,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        Toast.makeText(MainActivity.this, "Signed in Anonymously!", Toast.LENGTH_LONG).show();
+                        Toast toast = Toast.makeText(MainActivity.this, "Signed in Anonymously!", Toast.LENGTH_LONG);
+                        beautifyToast(toast);
                         Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
                         startActivity(intent);
 
@@ -73,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
             });
         }
         else{
+            Toast toast = Toast.makeText(MainActivity.this, "Signed in Anonymously!", Toast.LENGTH_LONG);
+            beautifyToast(toast);
             Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
             startActivity(intent);
         }
@@ -88,5 +94,14 @@ public class MainActivity extends AppCompatActivity {
         waveHeader.isRunning();
         waveHeader.setGradientAngle(45);
         waveHeader.setWaveHeight(50);
+    }
+
+    private void beautifyToast(Toast toast){
+        View v = toast.getView();
+        v.getBackground().setColorFilter(Color.parseColor("#000000"), PorterDuff.Mode.SRC_IN);
+
+        TextView textView = v.findViewById(android.R.id.message);
+        textView.setTextColor(Color.parseColor("#FFFFFF"));
+        toast.show();
     }
 }
