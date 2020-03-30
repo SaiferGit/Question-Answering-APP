@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     FirebaseUser mCurrentUser;
     MultiWaveHeader waveHeader;
     Button btn_start, btn_stat;
+    AnimationDrawable animationDrawable;
+    ImageView loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +41,18 @@ public class MainActivity extends AppCompatActivity {
         btn_start = findViewById(R.id.btn_main_start);
         btn_stat = findViewById(R.id.btn_main_stat);
 
+        final ImageView loading = findViewById(R.id.main_progressBar);
+        loading.setVisibility(View.GONE);
+        animationDrawable = (AnimationDrawable) loading.getDrawable();
+
+
         implementingWaveHeader();
 
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loading.setVisibility(View.VISIBLE);
+                animationDrawable.start();
                 signAnonymouslyWithFirebase();
             }
         });
@@ -64,23 +75,32 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
+
                         Toast toast = Toast.makeText(MainActivity.this, "Signed in Anonymously!", Toast.LENGTH_LONG);
                         beautifyToast(toast);
                         Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
                         startActivity(intent);
+                        animationDrawable.stop();
+                        loading.setVisibility(View.GONE);
 
                     } else {
-                        Toast.makeText(MainActivity.this, "Error occurred!" +task.toString(), Toast.LENGTH_LONG).show();
+
+                        Toast toast = Toast.makeText(MainActivity.this, "Error occurred!" +task.toString(), Toast.LENGTH_LONG);
+                        beautifyToast(toast);
+                        animationDrawable.stop();
+                        loading.setVisibility(View.GONE);
                     }
 
                 }
             });
         }
         else{
+
             Toast toast = Toast.makeText(MainActivity.this, "Signed in Anonymously!", Toast.LENGTH_LONG);
             beautifyToast(toast);
             Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
             startActivity(intent);
+            animationDrawable.stop();
         }
 
     }

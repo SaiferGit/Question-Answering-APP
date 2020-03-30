@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="450dp">
 
-
         <com.scwang.wave.MultiWaveHeader
             android:id="@+id/waveHeader"
             android:layout_width="match_parent"
@@ -26,6 +25,14 @@
             app:mwhWaves="MultiWave">
 
         </com.scwang.wave.MultiWaveHeader>
+
+        <ImageView
+            android:id="@+id/main_progressBar"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:visibility="gone"
+            android:src="@drawable/loading"
+            android:layout_centerInParent="true"/>
 
         <TextView
             android:layout_width="wrap_content"
