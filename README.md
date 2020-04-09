@@ -6,6 +6,7 @@ This is a question answering app build with Android, Java and Firebase. The app 
 - A beautiful UI
 - Animatated questions popup
 - Logging out each time after submitting all the answers.
+- Can see how many data is collected(Statistics in real time)
 - three types of questions layout:
   - MCQ (3/4 options)
   - Short Written Answer
