@@ -35,93 +35,81 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mAuth = FirebaseAuth.getInstance();
-        mCurrentUser = mAuth.getCurrentUser();
+        try {
+            mAuth = FirebaseAuth.getInstance();
+            mCurrentUser = mAuth.getCurrentUser();
+        } catch (Exception e) {
+            Toast.makeText(this, "Firebase init failed", Toast.LENGTH_LONG).show();
+        }
 
         btn_start = findViewById(R.id.btn_main_start);
         btn_stat = findViewById(R.id.btn_main_stat);
 
-        final ImageView loading = findViewById(R.id.main_progressBar);
+        loading = findViewById(R.id.main_progressBar);
         loading.setVisibility(View.GONE);
-        animationDrawable = (AnimationDrawable) loading.getDrawable();
 
+        if (loading.getDrawable() instanceof AnimationDrawable) {
+            animationDrawable = (AnimationDrawable) loading.getDrawable();
+        }
 
         implementingWaveHeader();
 
-        btn_start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        btn_start.setOnClickListener(view -> {
+            if (animationDrawable != null) {
                 loading.setVisibility(View.VISIBLE);
                 animationDrawable.start();
-                signAnonymouslyWithFirebase();
             }
+
+            signAnonymouslyWithFirebase();
         });
 
-        btn_stat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
-                //startActivity(intent);
-                // how many data we've collected so far
-            }
+        btn_stat.setOnClickListener(view -> {
+            Toast.makeText(this, "Stats feature coming soon", Toast.LENGTH_SHORT).show();
         });
     }
 
-
-
     private void signAnonymouslyWithFirebase() {
-        if(mCurrentUser == null){
-            mAuth.signInAnonymously().addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()){
 
-                        Toast toast = Toast.makeText(MainActivity.this, "Signed in Anonymously!", Toast.LENGTH_LONG);
-                        beautifyToast(toast);
-                        Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
-                        startActivity(intent);
-                        animationDrawable.stop();
-                        loading.setVisibility(View.GONE);
+        // 🔥 TEMPORARY FIX: skip Firebase to confirm crash source
+        if (mAuth == null) {
+            goToNextScreen();
+            return;
+        }
 
-                    } else {
-
-                        Toast toast = Toast.makeText(MainActivity.this, "Error occurred!" +task.toString(), Toast.LENGTH_LONG);
-                        beautifyToast(toast);
-                        animationDrawable.stop();
-                        loading.setVisibility(View.GONE);
-                    }
-
+        if (mCurrentUser == null) {
+            mAuth.signInAnonymously().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    goToNextScreen();
+                } else {
+                    Toast.makeText(this, "Firebase Error", Toast.LENGTH_LONG).show();
+                    stopLoading();
                 }
             });
+        } else {
+            goToNextScreen();
         }
-        else{
+    }
 
-            Toast toast = Toast.makeText(MainActivity.this, "Signed in Anonymously!", Toast.LENGTH_LONG);
-            beautifyToast(toast);
-            Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
-            startActivity(intent);
-            animationDrawable.stop();
-        }
+    private void goToNextScreen() {
+        Toast.makeText(this, "Proceeding...", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, QuestionActivity.class));
+        stopLoading();
+    }
 
+    private void stopLoading() {
+        if (animationDrawable != null) animationDrawable.stop();
+        if (loading != null) loading.setVisibility(View.GONE);
     }
 
     private void implementingWaveHeader() {
         waveHeader = findViewById(R.id.waveHeader);
 
-        waveHeader.setColorAlpha(.5f);
-        waveHeader.setVelocity(5f);
-        waveHeader.setProgress(1f);
-        waveHeader.isRunning();
-        waveHeader.setGradientAngle(45);
-        waveHeader.setWaveHeight(50);
-    }
-
-    private void beautifyToast(Toast toast){
-        View v = toast.getView();
-        v.getBackground().setColorFilter(Color.parseColor("#000000"), PorterDuff.Mode.SRC_IN);
-
-        TextView textView = v.findViewById(android.R.id.message);
-        textView.setTextColor(Color.parseColor("#FFFFFF"));
-        toast.show();
+        if (waveHeader != null) {
+            waveHeader.setColorAlpha(.5f);
+            waveHeader.setVelocity(5f);
+            waveHeader.setProgress(1f);
+            waveHeader.setGradientAngle(45);
+            waveHeader.setWaveHeight(50);
+        }
     }
 }
